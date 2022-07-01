@@ -1,13 +1,15 @@
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (req,res, next)=>{
+
+    console.log(req.cookies)
     const token = req.cookies.isLogin;
     if(!token){
-        res.status(401).json("You are not authenticated")
+        res.status(401).json({message:"You are not authenticated"})
     }
     jwt.verify(token,process.env.JWT, (err, user)=>{
         if(err){
-            res.status(403).json("Token is not valid");
+            res.status(403).json({message:"Token is not valid"});
         }
         req.user = user
         next()

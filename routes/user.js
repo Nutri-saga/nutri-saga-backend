@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser, singnIn, getDashboard, logOut } from "../controllers/user.js";
+import { createUser, singnIn, getDashboard, logOut, updateUser } from "../controllers/user.js";
 import {verifyToken} from '../utils/auth.js'
 
 const router = express.Router();
@@ -15,6 +15,10 @@ router
 router
 .route('/logout')
 .get(logOut)
+
+router
+.route('/update')
+.put(updateUser)
 
 router
 .route('/dashboard')
