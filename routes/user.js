@@ -1,6 +1,7 @@
-import express from "express";
-import { createUser, singnIn, getDashboard, logOut, updateUser } from "../controllers/user.js";
-import {verifyToken} from '../utils/auth.js'
+const express = require('express')
+const {createUser, singnIn, getDashboard, logOut, updateUser} = require('../controllers/user')
+
+const {verifyToken} = require('../utils/auth')
 
 const router = express.Router();
 
@@ -24,5 +25,4 @@ router
 .route('/dashboard')
 .get(verifyToken, getDashboard)
 
-
-export default router
+module.exports =  router;

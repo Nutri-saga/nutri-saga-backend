@@ -1,9 +1,9 @@
-import mongoose from "mongoose"
-import userModel from "../models/userModel.js"
-import bcrypt from 'bcrypt'
-import jwt from "jsonwebtoken"
+const mongoose = require('mongoose')
+const userModel = require('../models/userModel')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
-export const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
     try {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
@@ -24,7 +24,7 @@ export const createUser = async (req, res) => {
     }
 }
 
-export const singnIn = async (req, res) => {
+exports.singnIn = async (req, res) => {
 
     const user = await userModel.findOne({
         username: req.body.username
@@ -43,7 +43,7 @@ export const singnIn = async (req, res) => {
 
 }
 
-export const updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
     try {
         const user = await userModel.findByIdAndUpdate(req.body.id, req.body, {new:true});
         if(user){
@@ -69,7 +69,7 @@ export const updateUser = async (req, res) => {
 
 }
 
-export const getDashboard = async (req, res) => {
+exports.getDashboard = async (req, res) => {
     const user = await userModel.findById(req.user.id);
     const {
         password,
@@ -78,7 +78,7 @@ export const getDashboard = async (req, res) => {
     res.status(200).json(data)
 }
 
-export const logOut = async (req, res) => {
+exports.logOut = async (req, res) => {
 
     res.clearCookie('isLogin').json("logged out success")
 }
