@@ -12,19 +12,19 @@ const dishSchema = new mongoose.Schema({
         required:true
     },
     energy: {
-        type: String,
+        type: Number,
         default: 0
     },
     protein: {
-        type: String,
+        type: Number,
         default: 0
     },
     fats: {
-        type: String,
+        type: Number,
         default: 0
     },
     calories: {
-        type: String,
+        type: Number,
         default: 0
     },
     image_url: {
